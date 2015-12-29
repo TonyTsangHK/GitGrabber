@@ -1,0 +1,12 @@
+/.idea
+/*.iml
+/.gradle
+/build
+/out
+/logs
+/GitGrabber-Logs
+/gradle
+/testGit
+/gradlew*
+/releases
+/latest-release

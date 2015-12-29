@@ -1,0 +1,44 @@
+{
+    "host": "github.com",
+    "protocol": "https",
+    "parentFolder": "../",
+    "mainProject": {
+        "name": "GitGrabber",
+        "local": "GitGrabber",
+        "remoteUrl": "TonyTsangHK/GitGrabber.git",
+        "defaultBranch": "master",
+        "updateWhenExists": true
+    },
+    "requiredProjects": [
+        {
+            "name": "Utilities",
+            "local": "Utilities",
+            "remoteUrl": "TonyTsangHK/Utilities.git",
+            "updateWhenExists": true
+        },
+        {
+            "name": "JSON",
+            "local": "JSON",
+            "remoteUrl": "TonyTsangHK/JSON.git",
+            "updateWhenExists": true
+        },
+        {
+            "name": "ByteUtils",
+            "local": "ByteUtils",
+            "remoteUrl": "TonyTsangHK/ByteUtils.git",
+            "updateWhenExists": true
+        },
+        {
+            "name": "JsonUtils",
+            "local": "JsonUtils",
+            "remoteUrl": "TonyTsangHK/JsonUtils.git",
+            "updateWhenExists": true
+        },
+        {
+            "name": "UIUtils",
+            "local": "UIUtils",
+            "remoteUrl": "TonyTsangHK/UIUtils.git",
+            "updateWhenExists": true
+        }
+    ]
+}

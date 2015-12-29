@@ -1,0 +1,108 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'utils.git.app.GitDependencyHandler'
+
+sourceCompatibility = 1.8
+version = file('src/version').text
+
+repositories {
+    mavenCentral()
+}
+
+task copyReadme(type: Copy) {
+    outputs.files+file("$buildDir/README.html")
+    outputs.files+file("README.html")
+    outputs.upToDateWhen { false }
+    copy {
+        from '.'
+        include 'README.html.template'
+        into buildDir
+        rename {
+            file -> 'README.html'
+        }
+        expand(project: project, version: version)
+    }
+    copy {
+        from '.'
+        include 'README.html.template'
+        into '.'
+        rename {
+            file -> 'README.html'
+        }
+        expand(project: project, version: version)
+    }
+}
+
+applicationDistribution.from(copyReadme) {
+    include 'README.html'
+}
+
+distZip {
+    duplicatesStrategy= DuplicatesStrategy.EXCLUDE
+    def baseDir = { archiveName - ".zip" }
+    into("${baseDir}/${rootProject.name}-${version}/bin") {
+        from 'customScripts'
+        include "*"
+    }
+}
+
+task copyToReleases(type: Copy) {
+    outputs.file file("latest-release/GitGrabber-latest.zip")
+    outputs.upToDateWhen { false }
+    from distZip.outputs
+    into("latest-release")
+    rename {
+        file -> "GitGrabber-latest.zip"
+    }
+}
+
+configure(copyToReleases) {
+    group = "distribution"
+    description = "Copy lastest distribution zip file to releases"
+}
+
+distZip.dependsOn copyReadme
+copyToReleases.dependsOn distZip
+
+configurations {
+    all*.exclude group: 'log4j', module: 'log4j'
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
+}
+
+dependencies {
+    compile project(':JSON')
+    compile project(':JsonUtil')
+    compile project(':Utilities')
+    compile project(':UIUtils')
+    compile group: 'com.jcraft', name: 'jsch', version: '0.1.53'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.10'
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.10'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.10'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.2'
+    compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '4.1.1.201511131810-r'
+    compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit.archive', version: '4.1.1.201511131810-r'
+    compile group: 'args4j', name: 'args4j', version: '2.0.29'
+}
+
+sourceSets {
+    main {
+        output.resourcesDir = "$buildDir/classes/main"
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src'
+            exclude '**/*.java'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+        resources {
+            srcDir 'test'
+            exclude '**/*.java'
+        }
+    }
+}
