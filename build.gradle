@@ -11,31 +11,31 @@ repositories {
 }
 
 task copyReadme(type: Copy) {
-    outputs.files+file("$buildDir/README.html")
-    outputs.files+file("README.html")
+    outputs.files+file("$buildDir/README.md")
+    outputs.files+file("README.md")
     outputs.upToDateWhen { false }
     copy {
         from '.'
-        include 'README.html.template'
+        include 'README.md.template'
         into buildDir
         rename {
-            file -> 'README.html'
+            file -> 'README.md'
         }
         expand(project: project, version: version)
     }
     copy {
         from '.'
-        include 'README.html.template'
+        include 'README.md.template'
         into '.'
         rename {
-            file -> 'README.html'
+            file -> 'README.md'
         }
         expand(project: project, version: version)
     }
 }
 
 applicationDistribution.from(copyReadme) {
-    include 'README.html'
+    include 'README.md'
 }
 
 distZip {
