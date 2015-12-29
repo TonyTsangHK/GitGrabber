@@ -72,7 +72,7 @@ configurations {
 
 dependencies {
     compile project(':JSON')
-    compile project(':JsonUtil')
+    compile project(':JsonUtils')
     compile project(':Utilities')
     compile project(':UIUtils')
     compile group: 'com.jcraft', name: 'jsch', version: '0.1.53'

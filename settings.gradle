@@ -9,8 +9,8 @@ project(':JSON').projectDir = file('../JSON')
 include 'ByteUtils'
 project(':ByteUtils').projectDir = file('../ByteUtils')
 
-include 'JsonUtil'
-project(':JsonUtil').projectDir = file('../JsonUtil')
+include 'JsonUtils'
+project(':JsonUtils').projectDir = file('../JsonUtils')
 
 include 'UIUtils'
 project(':UIUtils').projectDir = file('../UIUtils')
