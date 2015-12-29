@@ -8,22 +8,17 @@ Prerequisite:
 Setup
 ---
 
-- Clone the repository
-    git clone https://github.com/TonyTsangHK/GitGrabber.git
+For initial setup download customScripts/initialSetup.sh.
 
-- Unzip latest-release/GitGrabber-latest.zip
+Make sure gradle path is setup properly
 
-- Then run bin/GitGrabber.bat (Windows) or bin/GitGrabber.sh (Linux) for GUI
+run initialSetup.sh, e.g. ./initialSetup.sh /path/to/target/parent/folder
 
-- Or edit path variable to include GitGrabber's bin folder
+unzip the distribution zip & setup your path variable to include the bin folder
 
-- Then run the following command under cloned GitGrabber directory to grab GitGrabber's dependencies
-
-```
-    GitGrabber -c dependency.json
-```
 
 Command line usage of GitGrabber
+---
 
 ```
     -v, --version
@@ -58,11 +53,11 @@ Embedding within settings.gradle:
 ```
 rootProject.name = 'GitGrabber'
 
-//@->
+/*@->
 {
     ... configs goes here
 }
-//<-@
+<-@*/
 ```
 
 Config format
