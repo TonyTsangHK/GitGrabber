@@ -1,4 +1,4 @@
-GitGrabber v0.4.3
+GitGrabber v0.4.4
 ===
 
 Prerequisite:
@@ -16,6 +16,7 @@ run initialSetup.sh, e.g. ./initialSetup.sh /path/to/target/parent/folder
 
 unzip the distribution zip & setup your path variable to include the bin folder
 
+Or download the [Latest release](../../releases/latest)
 
 Command line usage of GitGrabber
 ---
