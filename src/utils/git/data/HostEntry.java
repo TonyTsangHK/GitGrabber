@@ -15,8 +15,6 @@ public class HostEntry {
     private String host, user, protocol;
     private int port;
 
-    private String remoteUrl = null;
-
     /**
      * Construct HostEntry from map, currently no error checking use with caution
      *
@@ -70,15 +68,15 @@ public class HostEntry {
     }
 
     public String buildRemoteUrl(String targetUrl) {
-        if (remoteUrl == null) {
-            if (protocol.equals("ssh")) {
-                remoteUrl = protocol + "://" + user + "@" + host + ":" + port + "/" + targetUrl;
+        String remoteUrl;
+
+        if (protocol.equals("ssh")) {
+            remoteUrl = protocol + "://" + user + "@" + host + ":" + port + "/" + targetUrl;
+        } else {
+            if (StringUtil.isEmptyString(user)) {
+                remoteUrl = protocol + "://" + host + ":" + port + "/" + targetUrl;
             } else {
-                if (StringUtil.isEmptyString(user)) {
-                    remoteUrl = protocol + "://" + host + ":" + port + "/" + targetUrl;
-                } else {
-                    remoteUrl = protocol + "://" + user + "@" + host + ":" + port + "/" + targetUrl;
-                }
+                remoteUrl = protocol + "://" + user + "@" + host + ":" + port + "/" + targetUrl;
             }
         }
         return remoteUrl;
