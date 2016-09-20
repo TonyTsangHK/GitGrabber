@@ -107,18 +107,26 @@ sourceSets {
         java {
             srcDir 'src'
         }
+        kotlin {
+            srcDir 'src'
+        }
         resources {
             srcDir 'src'
             exclude '**/*.java'
+            exclude '**/*.kt'
         }
     }
     test {
         java {
             srcDir 'test'
         }
+        kotlin {
+            srcDir 'test'
+        }
         resources {
             srcDir 'test'
             exclude '**/*.java'
+            exclude '**/*.kt'
         }
     }
 }
