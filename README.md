@@ -38,13 +38,17 @@ Command line usage of GitGrabber
             Main project target path
     -r, --remote, --remoteUrl
             Remote repository URL
-    -b, --branch
+    -b, --branch (optional, default to master)
             default branch of main project
-    -d, --dependency
+    -d, --dependency (optional, default to dependency.json)
             Dependency config file relative to main project path
 
     Example:
     GitGrabber -r https://github.com/TonyTsangHK/GitGrabber.git -t /path/to/local/GitGrabber -b master -d dependency.json
+    
+    Or omitting branch and dependency parameter (default to master branch and dependency.json as dependency config file)
+    
+    GitGrabber -r https://github.com/TonyTsangHK/GitGrabber.git -t /path/to/local/GitGrabber
 ```
 
 GitGrabber config can be a json file or embedded within start tag (@->) and end tag (<-@) pattern in other file.
