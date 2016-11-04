@@ -1,4 +1,4 @@
-GitGrabber v0.4.5
+GitGrabber v0.4.6
 ===
 
 Prerequisite:
