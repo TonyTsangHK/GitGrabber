@@ -21,10 +21,26 @@ public class GitDependencyHandler {
             values.printUsage();
         } else if (values.isRunGUI()) {
             GitDependencyHandlerGui.process();
-        } else if (values.isRefFileSpecified()) {
-            GitDependencyHandlerConsole.processRemoteRef(
-                values.getTargetPath(), values.getRemoteUrl(), values.getDefaultBranch(), values.getRefFile()
-            );
+        } else if (values.isDirectRemoteGrab()) {
+            if (values.isDefaultBranchSpecified() && values.isDependencySpecified()) {
+                GitDependencyHandlerConsole.processRemoteRef(
+                    values.getTargetPath(), values.getRemoteUrl(), values.getDefaultBranch(), values.getRefFile()
+                );
+            } else {
+                if (values.isDefaultBranchSpecified()) {
+                    GitDependencyHandlerConsole.processRemoteRefWithPresetDependency(
+                        values.getTargetPath(), values.getRemoteUrl(), values.getDefaultBranch()
+                    );
+                } else if (values.isDependencySpecified()) {
+                    GitDependencyHandlerConsole.processRemoteRefWithPresetBranch(
+                        values.getTargetPath(), values.getRemoteUrl(), values.getRefFile()
+                    );
+                } else {
+                    GitDependencyHandlerConsole.processRemoteRefWithPresetBranchAndDependency(
+                        values.getTargetPath(), values.getRemoteUrl()
+                    );
+                }
+            }
         } else {
             if (values.getConfigFile() != null) {
                 GitDependencyHandlerConsole.process(values.getConfigFile());

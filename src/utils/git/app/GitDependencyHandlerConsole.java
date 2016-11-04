@@ -42,6 +42,18 @@ public class GitDependencyHandlerConsole extends GitDependencyHandlerBase {
     public static void process(File configFile) {
         getInstance().doMain(configFile);
     }
+    
+    public static void processRemoteRefWithPresetBranchAndDependency(String targetPath, String remoteUrl) {
+        processRemoteRef(targetPath, remoteUrl, "master", "dependency.json");
+    }
+    
+    public static void processRemoteRefWithPresetDependency(String targetPath, String remoteUrl, String defaultBranch) {
+        processRemoteRef(targetPath, remoteUrl, defaultBranch, "dependency.json");
+    }
+    
+    public static void processRemoteRefWithPresetBranch(String targetPath, String remoteUrl, String refFile) {
+        processRemoteRef(targetPath, remoteUrl, "master", refFile);
+    }
 
     public static void processRemoteRef(String targetPath, String remoteUrl, String defaultBranch, String refFile) {
         getInstance().doMain(targetPath, remoteUrl, defaultBranch, refFile);

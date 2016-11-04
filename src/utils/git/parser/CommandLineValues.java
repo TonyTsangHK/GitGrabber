@@ -28,13 +28,13 @@ public class CommandLineValues {
     @Option(name = "-c", aliases = {"--config"}, required = false, usage = "Provide config file")
     private File configFile;
 
-    @Option(name = "-t", aliases = {"--target"}, required = false, usage = "Target path of main project (must be used together with remote, branch & dependency)")
-    String targetPath;
-    @Option(name = "-r", aliases = {"--remote", "--remoteUrl"}, required = false, usage = "Remote repository url (must be used together with target, branch & dependency)")
+    @Option(name = "-t", aliases = {"--target"}, required = false, usage = "Target path of main project (must be used together with remote url, branch (optional, default: master) & dependency (optional, default: dependency.json))")
+    private String targetPath;
+    @Option(name = "-r", aliases = {"--remote", "--remoteUrl"}, required = false, usage = "Remote repository url (must be used together with target, branch (optional, default: master) & dependency (optional, default: dependency.json))")
     private String remoteUrl;
-    @Option(name = "-b", aliases = {"--branch"}, required = false, usage = "Default branch of repository (must be used together with target, remote & dependency)")
-    String defaultBranch;
-    @Option(name = "-d", aliases = {"--dependency"}, required = false, usage = "dependency file (must be used together with target, remote & branch)")
+    @Option(name = "-b", aliases = {"--branch"}, required = false, usage = "Default branch of repository (must be used together with target, remote url & dependency (optional, default: dependency.json))")
+    private String defaultBranch;
+    @Option(name = "-d", aliases = {"--dependency"}, required = false, usage = "dependency file (must be used together with target, remote url & branch (optional, default: master))")
     private String refFile;
 
     private CmdLineParser parser;
@@ -91,10 +91,17 @@ public class CommandLineValues {
     public boolean isRunGUI() {
         return runGUI;
     }
-
-    public boolean isRefFileSpecified() {
-        return !StringUtil.isEmptyString(targetPath) && !StringUtil.isEmptyString(remoteUrl) &&
-            !StringUtil.isEmptyString(defaultBranch) && !StringUtil.isEmptyString(refFile);
+    
+    public boolean isDirectRemoteGrab() {
+        return !StringUtil.isEmptyString(targetPath) && !StringUtil.isEmptyString(remoteUrl);
+    }
+    
+    public boolean isDefaultBranchSpecified() {
+        return !StringUtil.isEmptyString(defaultBranch);
+    }
+    
+    public boolean isDependencySpecified() {
+        return !StringUtil.isEmptyString(refFile);
     }
 
     public String getRemoteUrl() {
