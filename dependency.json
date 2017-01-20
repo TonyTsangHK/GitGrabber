@@ -35,6 +35,19 @@
             "updateWhenExists": true
         },
         {
+            "name": "FormulaUtils",
+            "local": "FormulaUtils",
+            "remoteUrl": "TonyTsangHK/FormulaUtils.git",
+            "defaultBranch": "dev",
+            "updateWhenExists": true
+        },
+        {
+            "name": "TemplateUtils",
+            "local": "TemplateUtils",
+            "remoteUrl": "TonyTsangHK/TemplateUtils.git",
+            "updateWhenExists": true
+        },
+        {
             "name": "UIUtils",
             "local": "UIUtils",
             "remoteUrl": "TonyTsangHK/UIUtils.git",

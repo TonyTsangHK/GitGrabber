@@ -12,5 +12,12 @@ project(':ByteUtils').projectDir = file('../ByteUtils')
 include 'JsonUtils'
 project(':JsonUtils').projectDir = file('../JsonUtils')
 
+// Dependency of TemplateUtils
+include 'FormulaUtils'
+project(':FormulaUtils').projectDir = new File('../FormulaUtils')
+
+include 'TemplateUtils'
+project(':TemplateUtils').projectDir = new File('../TemplateUtils')
+
 include 'UIUtils'
 project(':UIUtils').projectDir = file('../UIUtils')
